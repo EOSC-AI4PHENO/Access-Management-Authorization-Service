@@ -1,0 +1,42 @@
+app:
+  keycloak:
+    url: xxxxxxxxxxxxxxx
+    url-admin: xxxxxxxxxxxxxxx
+    realms:
+      - name: spring-boot-eosc-realm
+        client-id: xxxxxxxxxxxxxxx
+        client-secret: xxxxxxxxxxxxxxx
+
+server:
+  port: 6002
+  error:
+    include-message: always
+
+logging:
+  level:
+    ROOT: INFO
+    com:
+      siseth:
+        authorization: DEBUG
+    org:
+      hibernate:
+        SQL: INFO
+  file:
+    name: logs/authorization.log
+
+springdoc:
+  api-docs:
+    path: /api/access/authorization/v3/api-docs
+
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+    hostname: localhost
+spring:
+  application:
+    name: authorization-service
